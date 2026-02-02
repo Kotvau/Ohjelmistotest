@@ -1,21 +1,36 @@
 //convert.js
 
 /**
- * Converts hex to rgb.
+ * Color conversion utility functions.
  *
- * @param {string} hex - hex code
- * @returns {string} - rgb
- * @throws {Error} If hex is not 6 or 3 digits
+ * @module convert
+ */
+
+/**
+ * Converts a hexadecimal color code to an RGB string.
+ *
+ * Accepts either a 3-digit (e.g. "f0a") or 6-digit (e.g. "ff00aa")
+ * hexadecimal color code **without** a leading '#'.
+ *
+ * @function hexToRgb
+ * @param {string} hex - Hexadecimal color code (3 or 6 characters, 0–9, A–F).
+ * @returns {string} RGB value in the format "(r,g,b)".
+ * @throws {Error} If the hex code length is not 3 or 6 characters.
+ * @throws {Error} If the hex code contains invalid characters.
+ *
+ * @example
+ * hexToRgb("ff0000"); // "(255,0,0)"
+ * hexToRgb("0f0");    // "(0,255,0)"
  */
 
 function hexToRgb(hex) {
   if (!(hex.length == 6 || hex.length == 3)) {
-    throw new Error("Please enter 6 digits color code!");
+    throw new Error("Hex code must be 3 or 6 characters long.");
   }
 
   let isAlphabetic = /^[A-Fa-f0-9]+$/.test(hex);
   if (isAlphabetic === false) {
-    throw new Error("Can only contain alphabets A to F!");
+    throw new Error("Hex code can only contain characters 0-9 and A-F.");
   }
 
   let r,
@@ -39,15 +54,9 @@ function hexToRgb(hex) {
   g = parseInt(g, 16);
   b = parseInt(b, 16);
 
-  rgb = "(" + r + "," + g + "," + b + ")";
+  let rgb = "(" + r + "," + g + "," + b + ")";
 
   return rgb;
 }
 
-/**
- * Convert utility functions.
- *
- * @module convert
- * @property {function(string): string} hexToRgb - convert hex to rgb.
- */
 module.exports = { hexToRgb };
