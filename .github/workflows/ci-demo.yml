@@ -11,6 +11,10 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
+
+    defaults:
+      run:
+        working-directory: ./8_deployment/AT00BY10
     
     steps:
 
@@ -24,7 +28,6 @@ jobs:
 
 
     - name: npm install, make test-coverage
-      working-directory: ./8_deployment/AT00BY10
       run: |
         npm install
         make test-coverage
