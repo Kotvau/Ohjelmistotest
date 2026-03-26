@@ -17,7 +17,7 @@ jobs:
         node-version: lts/*
 
     - name: npm install, make test-coverage
-      working-directory: ./8_deployment
+      working-directory: ./8_deployment/AT00BY10
       run: |
         npm install
         make test-coverage
